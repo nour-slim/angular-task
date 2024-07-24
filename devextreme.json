@@ -1,0 +1,63 @@
+{
+  "applicationEngine": "angular",
+  "build": {
+    "commands": [
+      {
+        "command": "build-theme",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.base.json",
+          "outputFile": "src/assets/themegenerated/theme.base.css"
+        }
+      },
+      {
+        "command": "build-theme",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.additional.json",
+          "outputFile": "src/assets/theme/generated/theme.additional.css"
+        }
+      },
+      {
+        "command": "export-theme-vars",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.base.json",
+          "outputFile": "src/assets/theme/generated/variables.base.scss"
+        }
+      },
+      {
+        "command": "export-theme-vars",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.additional.json",
+          "outputFile": "src/assets/theme/generated/variables.additional.scss"
+        }
+      },
+      {
+        "command": "build-theme",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.base.json",
+          "outputFile": "src/assets/theme/generated/theme.base.css"
+        }
+      },
+      {
+        "command": "build-theme",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.additional.json",
+          "outputFile": "src/assets/theme/generated/theme.additional.css"
+        }
+      },
+      {
+        "command": "export-theme-vars",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.base.json",
+          "outputFile": "src/assets/theme/generated/variables.base.scss"
+        }
+      },
+      {
+        "command": "export-theme-vars",
+        "options": {
+          "inputFile": "src/assets/theme/metadata.additional.json",
+          "outputFile": "src/assets/theme/generated/variables.additional.scss"
+        }
+      }
+    ]
+  }
+}

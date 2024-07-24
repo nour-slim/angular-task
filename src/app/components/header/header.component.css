@@ -1,0 +1,23 @@
+/* header.component.css */
+header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+  }
+  .theme-switch-button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    width: 52px;
+    height: 24px;
+    font-family: 'Roboto', sans-serif;
+  }

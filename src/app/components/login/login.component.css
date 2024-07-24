@@ -1,0 +1,321 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eee3e3;
+  }
+  
+  .outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+    background: linear-gradient(to bottom, #ffffff, #f7f7f7);
+  }
+  
+  .form-container {
+    width: 100%;
+    max-width: 400px;  
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    background: white;
+  }
+  
+  .panel {
+    text-align: center;
+  }
+  
+  .panel-heading {
+    background: #007bff;
+    color: white;
+    padding: 15px 0;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .panel-body {
+    padding: 20px;
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  
+  .icon {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .icon i {
+    font-size: 18px;
+  }
+  
+  .input-control {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .input-control:focus {
+    border-color: #007bff;
+  }
+  
+  input[type="password"]::-ms-reveal, 
+  input[type="password"]::-ms-clear, 
+  input[type="password"]::-webkit-contacts-auto-fill-button, 
+  input[type="password"]::-webkit-credentials-auto-fill-button, 
+  input[type="password"]::-webkit-calendar-picker-indicator {
+      display: none;
+  }
+  
+  .fa-eye, .fa-eye-slash {
+      position: absolute;
+      right: 12px; 
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #007bff;
+  }
+  
+  /* Error Styling */
+  .error .input-control {
+    border-color: #dc3545;
+  }
+  
+  .error .input-field {
+    border-color: #dc3545;
+  }
+  
+  .error .icon {
+    background: #dc3545;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+    text-align: left;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 8px 16px; /* Smaller padding */
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 14px; /* Smaller font size */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .forgett {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    margin-top: 20px;
+  }
+  
+  .forgett .forget-password {
+    text-align: left;
+  }
+  
+  .forgett .forgot-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .forgett .forgot-link:hover {
+    text-decoration: underline;
+  }
+  
+  .sign {
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .sign a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .sign a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-icon {
+    display: inline-block;
+    margin: 0 10px; 
+    transition: transform 0.2s; 
+  }
+  
+  .social-icon:hover {
+    transform: scale(1.1); 
+  }
+  
+  .social-img {
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%; 
+    border: 1px solid #ddd; 
+    padding: 5px;
+    background-color: white; 
+  }
+  
+  .form-group.error .input-control {
+    border-color: #dc3545; 
+  }
+  
+  .form-group.error .icon {
+    background-color: #dc3545; 
+  }
+  
+  .small-error {
+    color: #dc3545;
+    text-align: left;
+    font-size: 12px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+    font-size: 14px;
+    color: #6c757d;
+  }
+  
+  .separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    margin: 0 10px;
+  }
+  
+  /* Modal container */
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Modal content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  /* Close button */
+  .close-btn {
+    color: white;
+    font-size: 12px; /* Smaller font size */
+    font-weight: bold;
+    background-color: #dc3545; /* Red background */
+    padding: 12px 12px; /* Smaller padding */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: absolute;
+    bottom: 10px;
+    right: 10px; /* Adjusted positioning */
+    width: 80px; /* Adjusted width to fit content */
+  }
+  
+  .close-btn:hover {
+    background-color: #bb2d3b;
+    color: #ffffff; /* Darker red on hover */
+  }
+  
+  /* Verify button */
+  .verify-btn {
+    color: white;
+    font-size: 12px; /* Smaller font size */
+    font-weight: bold;
+    background-color: #007bff; /* Blue background */
+    padding: 12px 12px; /* Smaller padding */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    position: absolute;
+    bottom: 10px;
+    right: 110px; /* Adjusted positioning */
+    width: 80px; /* Adjusted width to fit content */
+  }
+  
+  .verify-btn:hover {
+    background-color: #0056b3; 
+    color: #ffffff; /* Darker blue on hover */
+  }
+  
+  /* Form input */
+  .forgot-form .form-group {
+    margin-bottom: 20px;
+    margin-bottom: 70px; 
+    position:relative;
+  }
+  
+  .forgot-form .input-control {
+    width: calc(100% - 24px); 
+    padding: 10px 10px; 
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .forgot-form .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  

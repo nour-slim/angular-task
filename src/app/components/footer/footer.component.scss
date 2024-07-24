@@ -1,0 +1,14 @@
+$base-accent: #22a3ff;
+$base-text-color: #000000de;
+$base-bg: #ffffff;
+$base-border-color: #e0e0e0;
+$base-border-radius: 4px;
+
+
+:host {
+  display: block;
+  color: rgba(0, 0, 0, 0.7); 
+  border-top: 1px solid rgba(0, 0, 0, 0.2); 
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
