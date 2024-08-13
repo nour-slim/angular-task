@@ -1,9 +1,11 @@
 $base-accent: #22a3ff;
 $base-text-color: #ffffff;
 $base-bg: #363640;
-$base-border-color: #515159;
+$base-border-color: #ffffff;
 $base-border-radius: 4px;
 $side-panel-min-width: 60px;
+$selected-bg-color: rgba(34, 163, 255, 0.5);
+
 
 :host {
   display: flex;
@@ -11,19 +13,28 @@ $side-panel-min-width: 60px;
   min-height: 100%;
   height: 100%;
   width: 250px !important;
-  background-color: $base-bg;
+  
 
   .menu-container {
     min-height: 100%;
     display: flex;
     flex: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.15) 100%);
+      pointer-events: none;
+    }
+    
 
     ::ng-deep .dx-treeview {
-      // ## Long text positioning
       white-space: nowrap;
-      // ##
 
-      // ## Icon width customization
       .dx-treeview-item {
         padding-left: 0;
         flex-direction: row-reverse;
@@ -33,9 +44,12 @@ $side-panel-min-width: 60px;
           margin: 0 !important;
         }
       }
-      // ##
-      
-      // ## Arrow customization
+      .custom-hover-item {
+        &:hover {
+          color: $base-accent; 
+        }
+      }
+     
       .dx-treeview-node {
         padding: 0 0 !important;
       }
@@ -43,19 +57,19 @@ $side-panel-min-width: 60px;
       .dx-treeview-toggle-item-visibility {
         right: 10px;
         left: auto;
+
       }
 
       .dx-rtl .dx-treeview-toggle-item-visibility {
         left: 10px;
         right: auto;
       }
-      // ##
+      
 
-      // ## Item levels customization
       .dx-treeview-node {
         &[aria-level='1'] {
           font-weight: bold;
-          border-bottom: 1px solid $base-border-color;
+          border-bottom: 1px solid #777e8f
         }
   
         &[aria-level='2'] .dx-treeview-item-content {
@@ -63,10 +77,8 @@ $side-panel-min-width: 60px;
           padding: 0 $side-panel-min-width;
         }
       }
-      // ##
     }
 
-    // ## Selected & Focuced items customization
     ::ng-deep .dx-treeview {
       .dx-treeview-node-container {
         .dx-treeview-node {
@@ -74,12 +86,10 @@ $side-panel-min-width: 60px;
             background: transparent;
           }
 
-          &.dx-state-selected > .dx-treeview-item * {
-            color: $base-accent;
-          }
+         
 
           &:not(.dx-state-focused)>.dx-treeview-item.dx-state-hover {
-            background-color: lighten($base-bg, 4.00);
+            background-color: lighten(#777e8f, 4.00);
           }
         }
       }
@@ -90,9 +100,8 @@ $side-panel-min-width: 60px;
         color: inherit;
       }
     }
-    // ##
   }
-
+  
   html, body {
     margin: 0px;
     min-height: 100%;
@@ -106,6 +115,7 @@ $side-panel-min-width: 60px;
   .content {
     line-height: 1.5;
     flex-grow: 1;
+   
   
     h2 {
       font-size: 30px;
@@ -170,3 +180,4 @@ $side-panel-min-width: 60px;
   $side-panel-min-width: 60px;
   
 }
+

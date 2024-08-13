@@ -1,0 +1,84 @@
+// Add this to your existing SCSS
+
+/* Profile header styles */
+header.profile-header {
+  background-color: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #f3f2f2;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 80%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+/* Profile container styles */
+.profile-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Profile header styles within the container */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Profile image container styles */
+.profile-image-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #c8c8c8;
+}
+
+/* Profile image styles */
+.profile-image {
+  width: 100%;
+  height: auto;
+}
+
+/* Profile username styles */
+.profile-username {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Button container styles */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Save button styles */
+.dx-button {
+  background-color:  rgb(115, 202, 249); 
+  color: #ffffff; 
+  border-radius: 4px;
+  border: none;
+  padding: 10px 20px;
+  
+  &:hover {
+    background-color: darken(rgb(115, 202, 249), 10%); 
+  }
+  
+  &:focus {
+    outline: none;
+  }
+}

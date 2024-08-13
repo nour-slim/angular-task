@@ -4,36 +4,55 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
-import { ThemeSelectorModule } from "../theme-selector/theme-selector.component";
-
+import { UserPanelModule } from '../user-panel/user-panel.component';
+import { UserStoreService } from '../../services/user-store.service';
+import { ThemeSwitcherModule } from '../theme-switcher/theme-switcher.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'] 
 })
-export class HeaderComponent implements OnInit{
-  
-  @Output()
-  menuToggle = new EventEmitter<boolean>();
+export class HeaderComponent implements OnInit {
 
-  @Input()
-  menuToggleEnabled = false;
-
-  @Input()
-  title!: string;
-
-  constructor(private authService: AuthService, private router: Router) { }
-
+  @Output() menuToggle = new EventEmitter<boolean>();
+  @Input() menuToggleEnabled = false;
+  @Input() title!: string;
+  public username!:string;
+  constructor(private authService: AuthService, private router: Router, private userStore: UserStoreService) {}
 
   ngOnInit() {
+    this.userStore.getUsername()
+    .subscribe(val=>{
+      const UserNameFromToken = this.authService.getUsernameFromToken();
+      this.username = val || UserNameFromToken
+    });
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
 
-  menuToggleEnabledd= true;
+  menuToggleEnabledd = true;
 
+  userMenuItems = [
+    {
+      text: 'Profile',
+      icon: 'user',
+      onClick: () => {
+        this.router.navigate(['/profile']);
+      }
+    },
+    {
+      text: 'Logout',
+      icon: 'runner',
+      onClick: () => {
+        this.authService.logOut();
+      }
+    }
+  ];
+
+  
+  
 }
 
 @NgModule({
@@ -41,16 +60,11 @@ export class HeaderComponent implements OnInit{
     CommonModule,
     DxButtonModule,
     DxToolbarModule,
-    ThemeSelectorModule
+    UserPanelModule,
+    ThemeSwitcherModule
+    
 ],
-  declarations: [ HeaderComponent ],
-  exports: [ HeaderComponent ]
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent]
 })
 export class HeaderModule { }
-
-
-    
-
-
-
-

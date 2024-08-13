@@ -13,22 +13,32 @@ import { NgToastModule } from 'ng-angular-popup';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { DxToolbarModule, DxDrawerModule, DxAccordionModule, DxSliderModule } from 'devextreme-angular';
-import { HomeComponent } from './components/home/home.component';
+import { HomeModule } from './components/home/home.component';
 import { DxListModule, DxButtonModule } from 'devextreme-angular';
 import { SideNavOuterToolbarModule } from './layouts/side-nav-outer-toolbar/side-nav-outer-toolbar.component';
 import { FooterModule } from './components/footer/footer.component';
 import { ScreenService } from './services/screen.service';
-import { ThemeSelectorModule } from './components/theme-selector/theme-selector.component';
 import { DxTextBoxModule } from 'devextreme-angular';
+import { AngularSplitModule } from 'angular-split';
+import {  UserPanelModule } from './components/user-panel/user-panel.component';
+import { DxContextMenuModule } from 'devextreme-angular';
+import {  APP_INITIALIZER } from '@angular/core';
+import { ConfigService } from './services/config.service';
+import { ProfileModule } from './components/profile/profile.module';
+import { DxDataGridModule } from 'devextreme-angular';
 import { ThemeService } from './services/theme.service';
+
+export function setupAppConfigServiceFactory(
+  service: ConfigService
+): Function {
+  return () => service.load();
+}
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    HomeComponent,
     ResetPasswordComponent,
-   
     
   ],
   imports: [
@@ -42,16 +52,30 @@ import { ThemeService } from './services/theme.service';
     DxToolbarModule,
     DxButtonModule,
     DxListModule,
-    DxAccordionModule,DxSliderModule,
+    DxAccordionModule,
+    DxSliderModule,
     HeaderModule,
     SideNavOuterToolbarModule,
-    FooterModule,ThemeSelectorModule
-    ,    DxTextBoxModule,
-
+    FooterModule,
+    DxTextBoxModule,
+    AngularSplitModule,
+    DxContextMenuModule,
+    UserPanelModule,
+    HomeModule,
+    ProfileModule,
+  DxDataGridModule,
+  DxButtonModule,
   
   ],
 
-  providers: [
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: setupAppConfigServiceFactory,
+    deps: [
+        ConfigService
+    ],
+    multi: true
+},
     provideHttpClient(withInterceptorsFromDi()),
     AuthService, ScreenService, ThemeService
   ],

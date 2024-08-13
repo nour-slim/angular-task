@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { ResetPasswordService } from '../../services/reset-password.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',

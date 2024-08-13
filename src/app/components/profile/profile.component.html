@@ -1,0 +1,44 @@
+<header class="dx-theme-background-color profile-header">
+  <h1>Profile</h1>
+</header>
+
+<div class="dx-theme-background-color profile-container">
+  <div class="profile-header">
+    <div class="profile-image-container">
+      <img src="assets/images/profile.png" alt="Profile Image" class="profile-image"/>
+    </div>
+    <div class="profile-username">{{ username }}</div>
+  </div>
+
+  <dx-form
+    [formData]="profileData"
+    labelLocation="top"
+    [colCount]="2"
+    (onValueChanged)="onValueChanged()">
+
+    <dxi-item dataField="firstName">
+      <dxo-label text="First Name"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="lastName">
+      <dxo-label text="Last Name"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="email">
+      <dxo-label text="Email"></dxo-label>
+    </dxi-item>
+
+    <dxi-item dataField="phone">
+      <dxo-label text="Phone"></dxo-label>
+    </dxi-item>
+
+    <dxi-item [colSpan]="2">
+      <div class="button-container">
+        <dx-button
+          text="Save"
+          (onClick)="saveProfile()">
+        </dx-button>
+      </div>
+    </dxi-item>
+  </dx-form>
+</div>

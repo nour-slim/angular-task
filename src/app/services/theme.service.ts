@@ -1,102 +1,68 @@
-
-import { currentTheme, refreshTheme } from 'devextreme/viz/themes';
+import themes, { current } from 'devextreme/ui/themes'
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import DevExpress from 'devextreme';
 
-@Injectable()
+
+//type Theme = typeof themes[number];
+
+// function getNextTheme(theme?: Theme) {
+//   return themes[themes.indexOf(theme!) + 1] || themes[0];
+// }
+
+@Injectable({
+  providedIn: 'root'
+})
 export class ThemeService {
-    themeMarker = "dx.theme.material.";
-    storageKey = "themeViewerAngular";
-    getTheme(){
-        return window.localStorage[this.storageKey]
-    }
+  private storageKey = 'app-theme';
+  private themeMarker = 'theme-';
 
-    getThemeData(){
-        return [
-            { text: "Orange Light", value: "orange.light", ImageSrc: "assets/icons/Component1.svg"},
-            { text: "Blue Light", value: "blue.light", ImageSrc: "assets/icons/Component2.svg" },
-            { text: "Purple Light", value: "purple.light", ImageSrc: "assets/icons/Component3.svg" },
-            { text: "Purple Dark", value: "purple.dark", ImageSrc: "assets/icons/Component4.svg" }
-        ]
-    }
+  currentTheme:any='dark';//: Theme = window.localStorage[this.storageKey] //|| getNextTheme();
+  
 
-    applyThemeColorVariables(styleSheet: CSSStyleSheet){
-        for (let i=0; i<styleSheet.cssRules.length;i++){
-            let cssRule = styleSheet.cssRules.item(i) as CSSStyleRule
-            if (cssRule?.selectorText === ".dx-theme-accent-as-text-color") {
-                document.documentElement.style.setProperty('--base-accent',cssRule.style.color)
-            }
-        }
-    }
+  public isDark = new BehaviorSubject<boolean>(this.currentTheme === 'dark');
 
-    applyBaseTheme(theme?: string) {
-        for(let index in document.styleSheets) {
-            let styleSheet = document.styleSheets[index],
-                href = styleSheet.href;
-            if(href) {
-                let themeMarkerPosition = href.indexOf(this.themeMarker);
-                if(themeMarkerPosition >= 0) {
-                    let startPosition = themeMarkerPosition + this.themeMarker.length,
-                        endPosition = href.indexOf(".css"),
-                        fileNamePart = href.substring(startPosition, endPosition);
+  private getThemeStyleSheets() {
+    return   Array.from(document.styleSheets).filter(
+      (styleSheet) => styleSheet?.href?.includes(this.themeMarker)
+    );
+  }
 
-                    if (fileNamePart === theme) {
-                        this.applyThemeColorVariables(styleSheet)
-                        styleSheet.disabled = false
-                    } else {
-                        styleSheet.disabled = true
-                    }                   
-                }
-            }
-        }
-    }
+  setAppTheme(theme = this.currentTheme) {
+    this.getThemeStyleSheets().forEach((styleSheet) => {
+      styleSheet.disabled = !styleSheet?.href?.includes(`${this.themeMarker}${theme}`);
+    });
 
-    applySwatchVariables(accent?: string){
-        if (accent === 'light') {
-            document.documentElement.style.setProperty('--base-border-color',"#F3F3F3")
-            document.documentElement.style.setProperty('--base-bg',"rgba(0, 0, 0, 0.16)")
-            document.documentElement.style.setProperty('--icon-color',"rgba(0, 0, 0, 0.54)")
-        } else {
-            document.documentElement.style.setProperty('--base-border-color',"#464650")
-            document.documentElement.style.setProperty('--base-bg',"rgba(255, 255, 255, 0.10)")
-            document.documentElement.style.setProperty('--icon-color',"rgba(255, 255, 255, 0.87)")
-        }
-    }
+    this.currentTheme = theme;
+    // this.isDark.next(this.currentTheme === 'dark');
+    themes.current('generic.light');
+    // const regexTheme = new RegExp(`\\.(${themes.join('|')})`, 'g');
 
-    applySwatchTheme(accent?: string){
-        for(let index in document.styleSheets) {
-            let styleSheet = document.styleSheets[index],
-                href = styleSheet.href;
-            if(href) {
-                let themeMarkerPosition = href.indexOf(this.themeMarker);
-                if(themeMarkerPosition >= 0) {
-                    let startPosition = themeMarkerPosition + this.themeMarker.length,
-                        endPosition = href.indexOf(".css"),
-                        fileNamePart = href.substring(startPosition, endPosition);
-                        console.log(fileNamePart)
-                    if (fileNamePart.includes('additional')) {
-                        styleSheet.disabled = !(accent == fileNamePart.substring(fileNamePart.indexOf('.')+1))
-                    }
-                }
-            }
-        }
-    }
+    // currentVizTheme(currentVizTheme().replace(regexTheme, `.${theme}`));
+    // refreshTheme();
+  }
 
-    applyTheme(theme?: string) {
-            
-        theme = theme || window.localStorage[this.storageKey] || "orange.light";
-        this.applyBaseTheme(theme)
-        
-        let accent = theme?.substring(theme?.indexOf('.')+1)
-        this.applySwatchVariables(accent)
-        
-        this.applySwatchTheme(accent)
+  getCurrentTheme() {
+    return this.currentTheme;
+  }
 
-        
-        window.localStorage[this.storageKey] = theme;
-        currentTheme('material.' + theme);
-        refreshTheme();
-    }
+  isFluent(): boolean {
+    return current().includes('fluent');
+  }
 
-    constructor() { }
+  switchTheme() {
+    // const newTheme = getNextTheme(this.currentTheme);
+    // this.setAppTheme(newTheme);
+    // window.localStorage[this.storageKey] = newTheme;
+    if(this.currentTheme==='dark')
+      this.currentTheme='light'
+    else
+         this.currentTheme='dark'
 
+
+         if(this.currentTheme==='dark')
+    themes.current('generic.dark');
+  else
+  themes.current('generic.light');
+  }
 }

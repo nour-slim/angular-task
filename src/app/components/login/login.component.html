@@ -1,11 +1,11 @@
-<div class="outer">
+<div class="outer" >
   <div class="form-container">
     <div class="panel">
       <div class="panel-heading">
         <h3 class="title">Login</h3>
       </div>
-      <div class="panel-body">
-        <form [formGroup]="loginform">
+      <div class="panel-body" >
+        <form [formGroup]="loginform" *ngIf="loginenable"> 
           <div class="form-group">
             <div class="input-field" [class.error]="loginform.controls['username'].dirty && loginform.hasError('required', 'username')">
               <span class="icon"><i class="fa fa-user"></i></span>

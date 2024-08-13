@@ -1,5 +1,5 @@
 
-<dx-drawer
+<dx-drawer class="drawer dx-theme-fluent-typography"
   class="drawer"
   position="before"
   [closeOnOutsideClick]="shaderEnabled"
@@ -16,7 +16,7 @@
     *dxTemplate="let dataMenu of 'panel'"
     (selectedItemChanged)="navigationChanged($event)"
     (openMenu)="navigationClick()">
-      <dx-toolbar id="navigation-header">
+      <dx-toolbar id="navigation-header" class="dx-theme-fluent-typography">
         <dxi-item
           *ngIf="minMenuSize !== 0"
           location="before"

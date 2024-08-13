@@ -1,4 +1,55 @@
+<div class="dx-theme-background-color content-block">
+  <button
+    (click)="toggleLock()"
+    [ngClass]="{ 'locked': isLocked, 'unlocked': !isLocked }"
+  >
+  <i class="material-icons">{{ isLocked ? 'lock' : 'lock_open' }}</i>
+</button>
 
-<div class="content-block">
+  <as-split
+    direction="horizontal"
+    unit="percent"
+    (dragEnd)="onDragEnd($event)"
+  >
+    <as-split-area
+      [size]="firstAreaSize"
+      [lockSize]="isLocked"
+    >
+      <as-split
+        direction="vertical"
+        unit="percent"
+        (dragEnd)="onVerticalDragEnd($event)"
+      >
+        <as-split-area
+          [size]="firstVerticalAreaSize"
+          [lockSize]="isLocked"
+        >
+          <div class="pane">
+            <h2>Hi Nour</h2>
+            <p>Welcome to your first pane.</p>
+          </div>
+        </as-split-area>
+
+        <as-split-area
+          [size]="secondVerticalAreaSize"
+          [lockSize]="isLocked"
+        >
+          <div class="pane">
+            <h2>Hi Again</h2>
+            <p>This is your second pane.</p>
+          </div>
+        </as-split-area>
+      </as-split>
+    </as-split-area>
+
+    <as-split-area
+      [size]="secondAreaSize"
+      [lockSize]="isLocked"
+    >
+      <div class="pane">
+        <h2>Hello... Again</h2>
+        <p>This is your third pane.</p>
+      </div>
+    </as-split-area>
+  </as-split>
 </div>
-
