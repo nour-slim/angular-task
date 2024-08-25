@@ -5,6 +5,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { StockQuotationComponent } from './components/stock-quotation/stock-quotation.component';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',component: ProfileComponent
-  }
+  },
+  
 ];
 
 @NgModule({
