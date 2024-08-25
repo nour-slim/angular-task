@@ -1,0 +1,17 @@
+<dx-data-grid
+  [dataSource]="stockQuotations"
+  [showBorders]="true"
+  [columnAutoWidth]="true"
+  [paging]="{ pageSize: 10 }"
+  [pager]="{
+    showPageSizeSelector: true,
+    allowedPageSizes: [10, 20, 50],
+    showInfo: true
+  }">
+  <dxi-column dataField="stockID" caption="Stock ID"></dxi-column>
+  <dxi-column dataField="tradingSessionID" caption="Trading Board"></dxi-column>
+  <dxi-column dataField="nameEn" caption="NameEn"></dxi-column>
+  <dxi-column dataField="nameAr" caption="NameAr"></dxi-column>
+  <dxi-column dataField="symbolEn" caption="SymbolEn"></dxi-column>
+  <dxi-column dataField="referencePrice" caption="Reference Price" dataType="number"></dxi-column>
+</dx-data-grid>

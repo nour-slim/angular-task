@@ -1,0 +1,53 @@
+
+  
+  dx-data-grid {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .dx-data-grid-header {
+    background-color: #f5f5f5; /* Light gray background for headers */
+    color: #333; /* Dark text for headers */
+    font-weight: bold; /* Bold text for better visibility */
+  }
+  
+  .dx-data-grid-content {
+    font-size: 14px; /* Adjust font size for readability */
+  }
+  
+  .dx-data-grid-row {
+    transition: background-color 0.3s ease;
+  }
+  
+  .dx-data-grid-row:hover {
+    background-color: #f0f0f0; /* Light gray on hover */
+  }
+  
+  .dx-data-grid-filter-row {
+    background-color: #f9f9f9; /* Light background for filter row */
+  }
+  
+  .dx-data-grid-search-panel {
+    background-color: #f9f9f9; /* Light background for search panel */
+  }
+  .drop-list {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    min-height: 100px;
+    position: relative;
+  }
+  
+  .draggable-content {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    cursor: move; /* Indicate that this is draggable */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
