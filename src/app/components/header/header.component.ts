@@ -1,4 +1,4 @@
-import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, NgModule, Input, Output, EventEmitter, OnInit , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -7,6 +7,9 @@ import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 import { UserPanelModule } from '../user-panel/user-panel.component';
 import { UserStoreService } from '../../services/user-store.service';
 import { ThemeSwitcherModule } from '../theme-switcher/theme-switcher.component';
+import { HubStatusComponent } from '../hub-status/hub-status.component';
+import { DxPopupModule } from 'devextreme-angular';
+import { HomeModule } from '../home/home.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -18,6 +21,7 @@ export class HeaderComponent implements OnInit {
   @Input() menuToggleEnabled = false;
   @Input() title!: string;
   public username!:string;
+  isPopupVisible: boolean = false;
   constructor(private authService: AuthService, private router: Router, private userStore: UserStoreService) {}
 
   ngOnInit() {
@@ -34,6 +38,10 @@ export class HeaderComponent implements OnInit {
 
   menuToggleEnabledd = true;
 
+  togglePopup(): void {
+    this.isPopupVisible = !this.isPopupVisible; 
+  }
+
   userMenuItems = [
     {
       text: 'Profile',
@@ -49,6 +57,7 @@ export class HeaderComponent implements OnInit {
         this.authService.logOut();
       }
     }
+
   ];
 
   
@@ -61,10 +70,13 @@ export class HeaderComponent implements OnInit {
     DxButtonModule,
     DxToolbarModule,
     UserPanelModule,
-    ThemeSwitcherModule
+    ThemeSwitcherModule,
+    DxPopupModule,
+    DxPopupModule,
     
 ],
-  declarations: [HeaderComponent],
-  exports: [HeaderComponent]
+  declarations: [HeaderComponent,HubStatusComponent],
+  exports: [HeaderComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeaderModule { }

@@ -1,0 +1,27 @@
+<dx-button (onClick)="togglePopup()">
+    <span class="icon"><i class="fa fa-wifi"></i></span>
+</dx-button>
+
+<dx-popup
+    [(visible)]="isPopupVisible"
+    [hideOnOutsideClick]="true"
+    [showTitle]="true"
+    title="Status"
+    [height]="400"
+    [width]="400"
+    [resizeEnabled]="true"
+    [dragEnabled]="true"
+    position="center">
+
+    <div class="status-container">
+        <div class="status-item">
+          <h3>Kuwait Hub</h3>
+        </div>
+        <div class="status-item">
+          <p>{{ getConnectionStatus() }}</p>
+        </div>
+      </div>
+    
+</dx-popup>
+
+<!-- https://gist.github.com/jehugaleahsa/825518ee860b84d3a041c17ccf095f61 -->
