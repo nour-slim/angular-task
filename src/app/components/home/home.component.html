@@ -1,55 +1,59 @@
-<div class="dx-theme-background-color content-block">
-  <button
+<!-- <div class="dx-theme-background-color content-block">
+  <dx-button
     (click)="toggleLock()"
     [ngClass]="{ 'locked': isLocked, 'unlocked': !isLocked }"
   >
-  <i class="material-icons">{{ isLocked ? 'lock' : 'lock_open' }}</i>
-</button>
+    <i class="material-icons">{{ isLocked ? 'lock' : 'lock_open' }}</i>
+  </dx-button>
 
-  <as-split
-    direction="horizontal"
-    unit="percent"
-    (dragEnd)="onDragEnd($event)"
-  >
-    <as-split-area
-      [size]="firstAreaSize"
-      [lockSize]="isLocked"
-    >
-      <as-split
-        direction="vertical"
-        unit="percent"
-        (dragEnd)="onVerticalDragEnd($event)"
-      >
-        <as-split-area
-          [size]="firstVerticalAreaSize"
-          [lockSize]="isLocked"
-        >
-          <div class="pane">
-            <h2>Hi Nour</h2>
-            <p>Welcome to your first pane.</p>
+  <as-split direction="horizontal" unit="percent" (dragEnd)="onDragEnd($event)">
+    <as-split-area [size]="firstAreaSize" [lockSize]="isLocked">
+      <as-split direction="vertical" unit="percent" (dragEnd)="onVerticalDragEnd($event)">
+        <as-split-area [size]="firstVerticalAreaSize" [lockSize]="isLocked">
+          <div class="pane" cdkDropList [cdkDropListData]="'leftPane'" (cdkDropListDropped)="onDrop($event)">
+            <ng-container *ngIf="paneContent['leftPane']">
+              <app-stock-quotation></app-stock-quotation>
+            </ng-container>
+            <div *ngIf="!paneContent['leftPane']">
+              <p>Drag item here</p>
+            </div>
           </div>
         </as-split-area>
 
-        <as-split-area
-          [size]="secondVerticalAreaSize"
-          [lockSize]="isLocked"
-        >
-          <div class="pane">
-            <h2>Hi Again</h2>
-            <p>This is your second pane.</p>
+        <as-split-area [size]="secondVerticalAreaSize" [lockSize]="isLocked">
+          <div class="pane" cdkDropList [cdkDropListData]="'centerPane'" (cdkDropListDropped)="onDrop($event)">
+            <ng-container *ngIf="paneContent['centerPane']">
+              <app-stock-quotation></app-stock-quotation>
+            </ng-container>
+            <div *ngIf="!paneContent['centerPane']">
+              <p>Drag item here</p>
+            </div>  
           </div>
         </as-split-area>
       </as-split>
     </as-split-area>
 
-    <as-split-area
-      [size]="secondAreaSize"
-      [lockSize]="isLocked"
-    >
-      <div class="pane">
-        <h2>Hello... Again</h2>
-        <p>This is your third pane.</p>
+    <as-split-area [size]="secondAreaSize" [lockSize]="isLocked">
+      <div class="pane" cdkDropList [cdkDropListData]="'rightPane'" (cdkDropListDropped)="onDrop($event)">
+        <ng-container *ngIf="paneContent['rightPane']">
+          <app-stock-quotation></app-stock-quotation>
+        </ng-container>
+        <div *ngIf="!paneContent['rightPane']">
+          <p>Drag item here</p>
+        </div>
       </div>
     </as-split-area>
   </as-split>
 </div>
+ -->
+
+ 
+<link type="text/css" rel="stylesheet" href="//golden-layout.com/assets/css/goldenlayout-light-theme.css" />
+<link id="goldenlayout-dark" type="text/css" rel="stylesheet" href="https://golden-layout.com/files/latest/css/goldenlayout-dark-theme.css" disabled>
+
+ <div #layoutContainer style="height: 100vh; width: 100%;"></div>
+
+
+
+
+<!-- https://etrade.ids-fintech.com/trading -->
