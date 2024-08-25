@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +19,6 @@ import { SideNavOuterToolbarModule } from './layouts/side-nav-outer-toolbar/side
 import { FooterModule } from './components/footer/footer.component';
 import { ScreenService } from './services/screen.service';
 import { DxTextBoxModule } from 'devextreme-angular';
-import { AngularSplitModule } from 'angular-split';
 import {  UserPanelModule } from './components/user-panel/user-panel.component';
 import { DxContextMenuModule } from 'devextreme-angular';
 import {  APP_INITIALIZER } from '@angular/core';
@@ -27,6 +26,12 @@ import { ConfigService } from './services/config.service';
 import { ProfileModule } from './components/profile/profile.module';
 import { DxDataGridModule } from 'devextreme-angular';
 import { ThemeService } from './services/theme.service';
+import { StockQuotationModule} from './components/stock-quotation/stock-quotation.component';
+import { SignalRService } from './services/signalR/signal-r.service';
+import { DxPopupModule } from 'devextreme-angular';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+//import { HubStatusComponent } from './components/hub-status/hub-status.component';
+
 
 export function setupAppConfigServiceFactory(
   service: ConfigService
@@ -39,6 +44,8 @@ export function setupAppConfigServiceFactory(
     LoginComponent,
     SignupComponent,
     ResetPasswordComponent,
+  // StockQuotationComponent,
+  //HubStatusComponent
     
   ],
   imports: [
@@ -58,14 +65,15 @@ export function setupAppConfigServiceFactory(
     SideNavOuterToolbarModule,
     FooterModule,
     DxTextBoxModule,
-    AngularSplitModule,
     DxContextMenuModule,
     UserPanelModule,
     HomeModule,
     ProfileModule,
-  DxDataGridModule,
-  DxButtonModule,
-  
+    DxDataGridModule,
+    DxButtonModule,
+    DxPopupModule,
+    StockQuotationModule,
+    
   ],
 
   providers: [{
@@ -77,8 +85,9 @@ export function setupAppConfigServiceFactory(
     multi: true
 },
     provideHttpClient(withInterceptorsFromDi()),
-    AuthService, ScreenService, ThemeService
+    AuthService, ScreenService, ThemeService, SignalRService, provideAnimationsAsync(),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

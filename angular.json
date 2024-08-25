@@ -122,6 +122,7 @@
               "src/assets","config.json"
             ],
             "styles": [
+              
               "src/styles.css"
             ],
             "scripts": []
