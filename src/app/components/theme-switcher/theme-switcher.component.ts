@@ -22,6 +22,8 @@ export class ThemeSwitcherComponent {
 
   onButtonClick () {
     this.themeService.switchTheme();
+    this.themeService.applyTheme(this.themeService.getCurrentTheme());
+     
   }
 }
 

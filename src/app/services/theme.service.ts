@@ -4,20 +4,14 @@ import { BehaviorSubject } from 'rxjs';
 import DevExpress from 'devextreme';
 
 
-//type Theme = typeof themes[number];
-
-// function getNextTheme(theme?: Theme) {
-//   return themes[themes.indexOf(theme!) + 1] || themes[0];
-// }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
-  private storageKey = 'app-theme';
   private themeMarker = 'theme-';
-
-  currentTheme:any='dark';//: Theme = window.localStorage[this.storageKey] //|| getNextTheme();
+  private theme: 'light' | 'dark' = 'light';
+  currentTheme:any='light';
   
 
   public isDark = new BehaviorSubject<boolean>(this.currentTheme === 'dark');
@@ -34,15 +28,11 @@ export class ThemeService {
     });
 
     this.currentTheme = theme;
-    // this.isDark.next(this.currentTheme === 'dark');
     themes.current('generic.light');
-    // const regexTheme = new RegExp(`\\.(${themes.join('|')})`, 'g');
-
-    // currentVizTheme(currentVizTheme().replace(regexTheme, `.${theme}`));
-    // refreshTheme();
+    
   }
 
-  getCurrentTheme() {
+  getCurrentTheme()  {
     return this.currentTheme;
   }
 
@@ -51,9 +41,6 @@ export class ThemeService {
   }
 
   switchTheme() {
-    // const newTheme = getNextTheme(this.currentTheme);
-    // this.setAppTheme(newTheme);
-    // window.localStorage[this.storageKey] = newTheme;
     if(this.currentTheme==='dark')
       this.currentTheme='light'
     else
@@ -65,4 +52,29 @@ export class ThemeService {
   else
   themes.current('generic.light');
   }
+
+
+
+  public applyTheme(theme: 'light' | 'dark') {
+    this.getThemeStyleSheets().forEach((styleSheet) => {
+      styleSheet.disabled = !styleSheet?.href?.includes(`${this.themeMarker}${theme}`);
+    });
+
+    themes.current(theme === 'dark' ? 'generic.dark' : 'generic.light');
+    this.setGoldenLayoutTheme(theme);
+  }
+
+  setGoldenLayoutTheme(theme: 'dark' | 'light') {
+    const goldenLayoutDarkLink = document.querySelector('link[href*="goldenlayout-dark-theme.css"]');
+    const goldenLayoutLightLink = document.querySelector('link[href*="goldenlayout-light-theme.css"]');
+
+    if (theme === 'dark') {
+      goldenLayoutDarkLink?.removeAttribute('disabled');
+      goldenLayoutLightLink?.setAttribute('disabled', 'true');
+    } else {
+      goldenLayoutLightLink?.removeAttribute('disabled');
+      goldenLayoutDarkLink?.setAttribute('disabled', 'true');
+    }
+  }
+
 }
