@@ -8,6 +8,7 @@ import { DxScrollViewModule, DxScrollViewComponent } from 'devextreme-angular/ui
 import { CommonModule } from '@angular/common';
 
 import { Router, NavigationEnd } from '@angular/router';
+import { HubStatusComponent } from '../../components/hub-status/hub-status.component';
 
 @Component({
   selector: 'app-side-nav-outer-toolbar',
@@ -96,6 +97,6 @@ export class SideNavOuterToolbarComponent implements OnInit {
 @NgModule({
   imports: [ SideNavigationMenuModule, DxDrawerModule, HeaderModule, DxScrollViewModule, CommonModule ],
   exports: [ SideNavOuterToolbarComponent ],
-  declarations: [ SideNavOuterToolbarComponent ]
+  declarations: [ SideNavOuterToolbarComponent]
 })
 export class SideNavOuterToolbarModule { }

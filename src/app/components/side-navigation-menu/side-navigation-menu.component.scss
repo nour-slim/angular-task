@@ -88,9 +88,9 @@ $selected-bg-color: rgba(34, 163, 255, 0.5);
 
          
 
-          &:not(.dx-state-focused)>.dx-treeview-item.dx-state-hover {
-            background-color: lighten(#777e8f, 4.00);
-          }
+          // &:not(.dx-state-focused)>.dx-treeview-item.dx-state-hover {
+          //   background-color: lighten(#615b5b, 4.00);
+          // }
         }
       }
     }
